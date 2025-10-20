@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#00bcd4"/>
+      <stop offset="1" stop-color="#008fa6"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" rx="16" fill="url(#g)"/>
+  <g fill="#fff" font-family="Outfit, Poppins, sans-serif">
+    <text x="50%" y="45%" font-size="36" font-weight="700" text-anchor="middle">Moon*</text>
+    <text x="50%" y="62%" font-size="18" text-anchor="middle">Kết nối tài năng</text>
+  </g>
+</svg>

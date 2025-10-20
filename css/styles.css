@@ -131,8 +131,217 @@ body {
 }
 
 .hero {
-  padding: 48px 0;
+  padding: 0 0 48px 0;
 }
+
+/* Hero banner: left content, right photo */
+.hero-banner {
+  display: flex;
+  align-items: stretch;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.hero-left {
+  flex: 1;
+  padding: 72px 56px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+.hero-title {
+  font-size: 48px;
+  margin: 0 0 12px;
+  line-height: 1.02;
+}
+.hero-lead {
+  color: var(--muted);
+  max-width: 90%;
+  margin-bottom: 18px;
+}
+.hero-cta {
+  margin-top: 12px;
+}
+.hero-photo {
+  flex: 1;
+  position: relative;
+  min-height: 360px;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.12));
+  mix-blend-mode: multiply;
+}
+
+/* New frame to constrain photo and allow overlayed content */
+.hero-frame {
+  /* make the hero span the full viewport width (full-bleed) */
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: block;
+}
+.hero-frame .hero-photo {
+  width: 100%;
+  max-width: none;
+  border-radius: 0; /* full-bleed should not be rounded */
+  overflow: hidden;
+  box-shadow: none; /* remove inner shadows for full-bleed */
+}
+.overlay-content {
+  position: absolute;
+  left: 64px;
+  top: 64px;
+  color: #eaffff; /* slightly cyan-tinted white for brand harmony */
+  z-index: 4;
+  max-width: 560px;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* improve legibility on busy photos */
+}
+.overlay-content .eyebrow {
+  color: rgba(234, 255, 255, 0.9);
+  text-transform: uppercase;
+}
+.overlay-content .hero-title {
+  color: #eaffff;
+  font-size: 48px; /* reduced from 72px per request */
+  margin: 6px 0 12px;
+  line-height: 1.04;
+  font-weight: 800;
+}
+.overlay-content .hero-lead {
+  color: rgba(234, 255, 255, 0.96);
+  max-width: 520px;
+  font-size: 17px;
+}
+
+/* Emphasized lead styling: larger, Poppins font, subtle entrance */
+.hero-lead--accent {
+  font-family: "Poppins", "Outfit", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial;
+  font-weight: 400;
+  font-size: 18.5px;
+  margin-top: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: leadFade 0.6s ease 0.18s both;
+}
+
+@keyframes leadFade {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* stronger, slightly darker overlay for contrast */
+.photo-overlay {
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.64), rgba(0, 0, 0, 0.16));
+  mix-blend-mode: multiply;
+}
+
+/* Frosted / semi-opaque panel behind overlay content to further improve contrast */
+.overlay-panel {
+  position: absolute;
+  left: 48px;
+  top: 48px;
+  right: auto;
+  bottom: auto;
+  width: calc(100% - 96px);
+  max-width: 640px;
+  height: auto;
+  background: rgba(6, 18, 22, 0.48); /* dark teal-tinted translucent panel */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  z-index: 3; /* sits below text (z-index 4) */
+}
+
+/* CTA prominence: primary button stronger, secondary outline subdued */
+.hero-cta .btn-primary {
+  background: linear-gradient(180deg, var(--cyan-500), var(--cyan-600));
+  color: #fff;
+  border-color: transparent;
+  padding: 12px 18px;
+}
+.hero-cta .btn-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(255, 255, 255, 0.92);
+  margin-left: 12px;
+}
+
+@media (max-width: 600px) {
+  .overlay-panel {
+    display: none;
+  }
+  .overlay-content {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Responsive title scaling */
+@media (max-width: 900px) {
+  .overlay-content {
+    left: 32px;
+    top: 32px;
+    max-width: 420px;
+  }
+  .overlay-content .hero-title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* On small screens, keep overlay readable as a boxed panel */
+  .overlay-content {
+    position: relative;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.96);
+    color: #042a2a;
+    padding: 18px;
+    border-radius: 10px;
+    text-shadow: none;
+    max-width: none;
+    margin: 18px;
+  }
+  .overlay-content .eyebrow {
+    color: #0b3b3b;
+  }
+  .overlay-content .hero-title {
+    color: #022;
+    font-size: 28px;
+  }
+  .overlay-content .hero-lead {
+    color: #073;
+    font-size: 15px;
+  }
+}
+
+/* Slight decorative accent */
+.overlay-content::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 6px;
+  background: var(--cyan-500);
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+
+/* legacy helpers retained for other sections */
 .hero-inner {
   display: flex;
   gap: 40px;
@@ -239,6 +448,34 @@ h1 {
   align-items: center;
   padding: 48px 0;
 }
+/* Decorative CTA photo placed in the empty corner of the feature area */
+.feature-media {
+  position: relative;
+}
+.feature-media .cta-photo {
+  position: absolute;
+  left: -36px;
+  top: 20px;
+  width: 220px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(2, 18, 22, 0.12);
+  z-index: 3;
+  background: #fff;
+}
+.feature-copy {
+  padding-left: 36px;
+  max-width: 680px;
+}
+
+@media (max-width: 900px) {
+  .feature-media .cta-photo {
+    display: none;
+  }
+  .feature-copy {
+    padding-left: 0;
+  }
+}
 .feature-copy h2 {
   font-size: 34px;
   margin: 8px 0;
@@ -264,7 +501,7 @@ h1 {
   gap: 24px;
 }
 .card {
-  border: 2px solid #111;
+  border: 3px solid #111;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -334,8 +571,8 @@ h1 {
   text-align: left;
 }
 .big {
-  font-size: 56px;
-  font-weight: 800;
+  font-size: 72px;
+  font-weight: 900;
 }
 
 .cta {
@@ -472,8 +709,17 @@ h1 {
   .header-inner {
     position: relative;
   }
-  .hero-inner {
+  .hero-banner {
     flex-direction: column;
+  }
+  .hero-left {
+    padding: 28px;
+  }
+  .hero-photo {
+    height: 240px;
+  }
+  .hero-photo img {
+    height: 100%;
   }
   .hero {
     padding: 28px 0;

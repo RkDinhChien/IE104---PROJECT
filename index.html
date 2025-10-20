@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
@@ -47,21 +47,40 @@
     <main id="main-content">
       <!-- Hero -->
       <section class="hero" aria-label="Hero">
-        <div class="container hero-inner">
-          <div class="hero-copy">
-            <p class="eyebrow">Kết nối tài năng</p>
-            <h1>Kết nối tài năng IT với cơ hội nghề nghiệp</h1>
-            <p class="lead">
-              Moon* là nền tảng giúp sinh viên IT và doanh nghiệp gặp gỡ dễ dàng
-              — nơi tài năng được kết nối với cơ hội thực tế.
-            </p>
-            <div class="hero-cta">
-              <button class="btn btn-primary">Khám phá</button>
-              <button class="btn btn-outline">Đăng ký</button>
+        <div class="container">
+          <div class="hero-frame">
+            <div class="hero-photo" role="img" aria-label="Hero photo">
+              <img
+                src="assets/photo.jpg"
+                alt="Hero photo"
+                onerror="this.src='assets/hero.svg'"
+              />
+              <div class="photo-overlay" aria-hidden="true"></div>
+              <div class="overlay-panel" aria-hidden="true"></div>
+
+              <!-- overlay text sits on top of the image -->
+              <div class="overlay-content container">
+                <p class="eyebrow">Kết nối tài năng</p>
+                <h1 class="hero-title">
+                  Kết nối tài năng IT với cơ hội nghề nghiệp
+                </h1>
+                <p class="lead hero-lead hero-lead--accent">
+                  Moon* là nền tảng giúp sinh viên IT và doanh nghiệp gặp gỡ dễ
+                  dàng — nơi tài năng được kết nối với cơ hội thực tế.
+                </p>
+                <div class="hero-cta">
+                  <button class="btn btn-outline" aria-label="Khám phá Moon*">
+                    Khám phá
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    aria-label="Đăng ký tài khoản"
+                  >
+                    Đăng ký
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="hero-media">
-            <img src="assets/hero.svg" alt="Moon hero illustration" />
           </div>
         </div>
       </section>
@@ -74,7 +93,7 @@
       >
         <div class="feature-media">
           <img
-            src="assets/feature-1.jpg"
+            src="assets/CTA_photo.png"
             alt="Feature visual"
             onerror="this.style.display='none'"
           />
